@@ -5,27 +5,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!--Linked my reset and style sheets.-->
+    <link rel="resetsheet" href="./reset.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Weather Dashboard</title>
 </head>
 
 <body>
-
-    <header>
+    <header id="header">
         <h1 class="text-primary">Weather Dashboard</h1>
     </header>
 
-    <div class="flex-row align-center justify-center min-100-vh bg-primary">
-        <div class="col-12 col-md-9 flex-column align-center bg-light p-5">
-            <form id="search-form" class="form w-100">
-                <input id="search-input" class="form-input w-100" type="text" placeholder="Put a city name here!">
-                <button class="btn btn-info btn-block">Search</button>
-            </form>
+    <div class="container">
+        <div class="left-column">
+            <h2>Search for a city</h2>
+            <input type="text" id="input-field" placeholder="Type in a city name!">
+            <button type="submit" id="search-button">Go</button>
+            <hr>
+
+            <div class="search-history"></div>
+        </div>
+
+        <div class="right-column">
+            <div class="current-weather">
+                <div class="current-topline">
+                    <h2 class="city-name"></h2>
+                    <h2 class="date"></h2>
+                    <span class="weather-icon"></span>
+                </div>
+
+                <p class="temp"></p>
+                <p class="wind"></p>
+                <p class="humidity"></p>
+            </div>
+
+            <div class="future-forecast"></div>
         </div>
     </div>
 
-    <script src="./assets/js/script.js"></script>
 
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
+    <script src="./script.js"></script>
 </body>
 
 </html>
