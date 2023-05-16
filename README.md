@@ -2,7 +2,7 @@
 
 ## Description
 
-I set out to create a javascript file that would lead the user through. I built this project to test my knowledge of JavaScript web APIs and expand on what I had learned in class through outside research. This entire experience was a learning experience as JavaScript and web APIs are brand new to me and still overwhelming, but specifically I learned about using timers, event listeners, arrays,  and query selectors.
+I set out to create a webpage that would display current weather and future forecasts for any city the user searched for. I built this project to test my knowledge of JavaScript server-side APIs and expand on what I had learned in class through outside research. This entire experience was a learning experience as JavaScript and all types of APIs are brand new to me and still overwhelming, but specifically I learned about linking APIs and locally storing persisting values and that will serve me in the future.
 
 ## Installation
 

@@ -12,38 +12,44 @@
 </head>
 
 <body>
+    <!--Simple header for style-->
     <header id="header">
         <h1 class="text-primary">Weather Dashboard</h1>
     </header>
-
+    <hr>
+    <!--This div will house all the functioning aspects of the webpage. Search field, history, and weather results.-->
     <div class="container">
+        <!--left column specific to search field and past searches.-->
         <div class="left-column">
-            <h2>Search for a city</h2>
+            <h2>Search For a City:</h2>
+            <div id="input-container">
             <input type="text" id="input-field" placeholder="Type in a city name!">
             <button type="submit" id="search-button">Go</button>
-            <hr>
-
-            <div class="search-history"></div>
         </div>
+        </div>
+        <hr>
 
-        <div class="right-column">
-            <div class="current-weather">
-                <div class="current-topline">
-                    <h2 class="city-name"></h2>
-                    <h2 class="date"></h2>
-                    <span class="weather-icon"></span>
-                </div>
-
-                <p class="temp"></p>
-                <p class="wind"></p>
-                <p class="humidity"></p>
+        <div class="search-history"></div>
+    </div>
+    <!--right column will be used to display all results, both current day and five day forecast.-->
+    <div class="right-column">
+        <div class="current-weather">
+            <div class="current-topline">
+                <h2 class="city-name"></h2>
+                <h2 class="date"></h2>
+                <span class="weather-icon"></span>
             </div>
 
-            <div class="future-forecast"></div>
+            <p class="temp"></p>
+            <p class="wind"></p>
+            <p class="humidity"></p>
         </div>
+
+        <div class="future-forecast"></div>
+    </div>
     </div>
 
-
+    <!--linked my scripts down here.-->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
         integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>

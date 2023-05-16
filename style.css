@@ -1,3 +1,4 @@
+/* Giving my entire webpage some structure and the ability to flex into columns*/
 body {
     display: flex;
     flex-direction: column;
@@ -5,16 +6,27 @@ body {
     background-position: fixed;
 }
 
+/* Giving the different elements a little style to stand out from each other*/
 #header {
     height: auto;
     width: auto;
     padding: 30px;
-    color:bisque;
+    color:cornsilk;
     background-color: darkblue;
-    justify-items: center;
-    align-items: center;
-    justify-self: center;
-    justify-content: center;
-    align-content: center;
-    
+}
+
+.left-column {
+    color:cornsilk;
+    background-color:maroon;
+    padding-top: 2px;
+}
+
+h2 {
+    padding-left: 30px;
+}
+
+#input-container {
+    position: relative;
+    padding-left: 30px;
+    padding-bottom: 10px;
 }
