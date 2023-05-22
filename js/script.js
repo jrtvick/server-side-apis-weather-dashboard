@@ -9,9 +9,20 @@ var searchButton = document.getElementById("search-button");
 var searchForm = document.getElementById("search-form");
 var oldSearch = JSON.parse(localStorage.getItem("prevSearch")) || [];
 var searchHistoryEle = document.getElementById("search-history");
-var futureForecast = document.getElementById("future-forecast");
-var currentWeatherEl = document.getElementById("current-weather");
+var forecastCards = document.getElementById("forecast-cards");
+var weatherDataEl = document.getElementById("weather-data");
 const apiKey = "0657e2947af83aaf43aadc579a1a3f99";
+
+// get user's location
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+    getCurrentWeather(latitude, longitude, null);
+    getFutureWeather(latitude, longitude);
+  });
+} 
+
 
 //Function to capitalise first letter of search input
 function capitalizeFirstLetter(string) {
@@ -75,11 +86,11 @@ var getCurrentWeather = function (lat, lon, cityName) {
           const array = JSON.parse(
             localStorage.getItem("weatherSearchHistory")
           );
-          if (array && !array.includes(cityName.toLowerCase())) {
+          if (cityName && array && !array.includes(cityName.toLowerCase())) {
             array.unshift(cityName.toLowerCase());
             console.log(`saving ${array} to ls`);
             localStorage.setItem("weatherSearchHistory", JSON.stringify(array));
-          } else if (!array) {
+          } else if (cityName && !array) {
             // if no array
             console.log("else", array);
             localStorage.setItem(
@@ -106,7 +117,23 @@ var getFutureWeather = function (lat, lon) {
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
-          // console.log(data);
+          console.log(data.list);
+          // date, icon, temp, wind, humidity
+          forecastCards.innerHTML = "";
+
+          for (let i = 0; i < data.list.length; i += 8) {
+            const date = new Date(data.list[i].dt * 1000).toLocaleDateString();
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.innerHTML = `
+            <h3>${date}</h3>
+            <img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" />
+            <p>Temp: ${data.list[i].main.temp} C</p>
+            <p>Humidity: ${data.list[i].main.humidity}%</p>
+            <p>Wind Speed: ${data.list[i].wind.speed} kph</p>
+            `;
+            forecastCards.append(card)
+          }
         });
       } else {
         alert("Error: " + response.statusText);
@@ -118,8 +145,8 @@ var getFutureWeather = function (lat, lon) {
 };
 
 function renderCurrentWeather(data) {
-  currentWeatherEl.innerHTML = "";
-  currentWeatherEl.innerHTML = `
+  weatherDataEl.innerHTML = "";
+  weatherDataEl.innerHTML = `
   <h2>${data.name}</h2>
   <p id="date">${new Date(data.dt * 1000).toLocaleDateString()}</p>
   <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" />
