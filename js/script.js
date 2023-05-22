@@ -15,7 +15,11 @@ const apiKey = "0657e2947af83aaf43aadc579a1a3f99";
 
 //Function to capitalise first letter of search input
 function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+  let stringArray = string.split(" ");
+  stringArray = stringArray.map((word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  });
+  return stringArray.join(" ");
 }
 
 // get the value of the search input.
@@ -72,7 +76,7 @@ var getCurrentWeather = function (lat, lon, cityName) {
             localStorage.getItem("weatherSearchHistory")
           );
           if (array && !array.includes(cityName.toLowerCase())) {
-            array.push(cityName.toLowerCase());
+            array.unshift(cityName.toLowerCase());
             console.log(`saving ${array} to ls`);
             localStorage.setItem("weatherSearchHistory", JSON.stringify(array));
           } else if (!array) {
@@ -116,12 +120,12 @@ var getFutureWeather = function (lat, lon) {
 function renderCurrentWeather(data) {
   currentWeatherEl.innerHTML = "";
   currentWeatherEl.innerHTML = `
-  <p id="name">${data.name}</p>
-  <p id="date">${data.dt}</p>
-  <p id="icon">${data.weather[0].icon}</p>
-  <p id="temp">${data.main.temp}</p>
-  <p id="humidity">${data.main.humidity}</p>
-  <p id="wind-speed">${data.wind.speed}</p>
+  <h2>${data.name}</h2>
+  <p id="date">${new Date(data.dt * 1000).toLocaleDateString()}</p>
+  <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" />
+  <p id="temp">Temperature: ${data.main.temp} C</p>
+  <p id="humidity">Humidity: ${data.main.humidity}%</p>
+  <p id="wind-speed">Wind Speed: ${data.wind.speed} kph</p>
   `;
 }
 

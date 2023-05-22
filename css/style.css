@@ -32,20 +32,23 @@ main {
     width: 25%;
 }
 
-h2 {
+/* h2 {
     padding-left: 30px;
-}
+} */
 
 #input-container {
-    position: relative;
-    padding-left: 30px;
-    padding-bottom: 10px;
+    width: min-content;
+    margin: auto;
+}
+
+#search-history{
+    display: flex;
+    flex-direction: column;
 }
 
 
 
 #weather-section{
-    border: 2px solid red;
     width: 75%;
     display: flex;
     flex-direction: column;
@@ -54,6 +57,7 @@ h2 {
 #current-weather {
     background-color: bisque;
     flex-grow: 1;
+    border: 2px solid red;
 }
 
 #forecast {
