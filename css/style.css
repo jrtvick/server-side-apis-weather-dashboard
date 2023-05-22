@@ -1,11 +1,21 @@
 /* Giving my entire webpage some structure and the ability to flex into columns*/
-body {
+/* body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     background-position: fixed;
+} */
+body {
+    display: flex;
+    flex-direction: column;
 }
 
+main {
+
+    flex-grow: 1;
+    display: flex;
+
+}
 /* Giving the different elements a little style to stand out from each other*/
 #header {
     height: auto;
@@ -19,6 +29,7 @@ body {
     color:cornsilk;
     background-color:maroon;
     padding-top: 2px;
+    width: 25%;
 }
 
 h2 {
@@ -29,4 +40,23 @@ h2 {
     position: relative;
     padding-left: 30px;
     padding-bottom: 10px;
+}
+
+
+
+#weather-section{
+    border: 2px solid red;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+}
+
+#current-weather {
+    background-color: bisque;
+    flex-grow: 1;
+}
+
+#forecast {
+    background-color: darkgray;
+    flex-grow:1;
 }
