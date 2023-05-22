@@ -9,7 +9,7 @@ var searchButton = document.getElementById("search-button");
 var oldSearch = JSON.parse(localStorage.getItem("prevSearch")) || [];
 var searchHistoryEle = document.getElementById("search-history");
 var futureForecast = document.getElementById("future-forecast");
-const apiKey = "0657e2947af83aaf43aadc579a1a3f99"
+const apiKey = "0657e2947af83aaf43aadc579a1a3f99";
 
 //Function to capitalise first letter of search input
 function capitalizeFirstLetter(string) {
@@ -25,14 +25,19 @@ function searchInput() {
     return;
   }
 
-  getGeoApi(userSearch)
+  getGeoApi(userSearch);
   // This reads, modifies, and puts it back in
   const array = JSON.parse(localStorage.getItem("weatherSearchHistory"));
-  if (array) {
+  if (array && !array.includes(userSearch)) {
     array.push(userSearch);
+    console.log(`saving ${array} to ls`);
     localStorage.setItem("weatherSearchHistory", JSON.stringify(array));
-  } else
+
+  } else if (!array) {
+    // if no array
+    console.log('else', array)
     localStorage.setItem("weatherSearchHistory", JSON.stringify([userSearch]));
+  }
 
   console.log(userSearch);
 }
@@ -42,7 +47,6 @@ function searchInput() {
 
 // I'm not sure if I have to make another html + javascript file to display this?
 
-
 var getGeoApi = function (cityName) {
   var apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`;
 
@@ -50,15 +54,50 @@ var getGeoApi = function (cityName) {
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
-         console.log(data)
-         console.log(data[0].lat, data[0].lon)
+          console.log(data);
+          getCurrentWeather(data[0].lat, data[0].lon);
+          getFutureWeather(data[0].lat, data[0].lon);
         });
       } else {
         alert("Error: " + response.statusText);
       }
     })
     .catch(function (error) {
-      alert("Unable to connect to OpenWeatherMap");
+      alert(`Unable to connect to OpenWeatherMap: ${error}`);
+    });
+};
+
+var getCurrentWeather = function (lat, lon) {
+  var apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  fetch(apiUrl)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          console.log(data);
+        });
+      } else {
+        alert("Error: " + response.statusText);
+      }
+    })
+    .catch(function (error) {
+      alert(`Unable to connect to OpenWeatherMap: ${error}`);
+    });
+};
+
+var getFutureWeather = function (lat, lon) {
+  var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  fetch(apiUrl)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          console.log(data);
+        });
+      } else {
+        alert("Error: " + response.statusText);
+      }
+    })
+    .catch(function (error) {
+      alert(`Unable to connect to OpenWeatherMap: ${error}`);
     });
 };
 
