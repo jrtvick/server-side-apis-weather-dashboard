@@ -22,6 +22,7 @@ function capitalizeFirstLetter(string) {
 // this was working but now it isn't ? debug needed
 function searchInput() {
   var userSearch = inputField.value;
+  inputField.value = "";
   console.log(userSearch);
   if (userSearch === "") {
     alert("Invalid. Please write something in the search field.");
@@ -30,16 +31,6 @@ function searchInput() {
 
   getGeoApi(userSearch);
   // This reads, modifies, and puts it back in
-  const array = JSON.parse(localStorage.getItem("weatherSearchHistory"));
-  if (array && !array.includes(userSearch)) {
-    array.push(userSearch);
-    console.log(`saving ${array} to ls`);
-    localStorage.setItem("weatherSearchHistory", JSON.stringify(array));
-  } else if (!array) {
-    // if no array
-    console.log("else", array);
-    localStorage.setItem("weatherSearchHistory", JSON.stringify([userSearch]));
-  }
 }
 
 // use the search value to query the geocode API
@@ -55,7 +46,11 @@ var getGeoApi = function (cityName) {
       if (response.ok) {
         response.json().then(function (data) {
           // console.log(data);
-          getCurrentWeather(data[0].lat, data[0].lon);
+          if (!data.length) {
+            return;
+          }
+
+          getCurrentWeather(data[0].lat, data[0].lon, cityName);
           getFutureWeather(data[0].lat, data[0].lon);
         });
       } else {
@@ -67,12 +62,29 @@ var getGeoApi = function (cityName) {
     });
 };
 
-var getCurrentWeather = function (lat, lon) {
+var getCurrentWeather = function (lat, lon, cityName) {
   var apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
+          const array = JSON.parse(
+            localStorage.getItem("weatherSearchHistory")
+          );
+          if (array && !array.includes(cityName.toLowerCase())) {
+            array.push(cityName.toLowerCase());
+            console.log(`saving ${array} to ls`);
+            localStorage.setItem("weatherSearchHistory", JSON.stringify(array));
+          } else if (!array) {
+            // if no array
+            console.log("else", array);
+            localStorage.setItem(
+              "weatherSearchHistory",
+              JSON.stringify([cityName.toLowerCase()])
+            );
+          }
+          populateSearchHistory();
+
           renderCurrentWeather(data);
         });
       } else {
@@ -114,6 +126,7 @@ function renderCurrentWeather(data) {
 }
 
 // add the searched city to the search history using localstorage
+populateSearchHistory();
 function populateSearchHistory() {
   if (localStorage.getItem("weatherSearchHistory")) {
     searchHistoryEle.innerHTML = "";
@@ -123,7 +136,7 @@ function populateSearchHistory() {
       const button = document.createElement("button");
       button.textContent = capitalizeFirstLetter(searchItem);
       button.addEventListener("click", () => {
-        executeSearch(searchItem);
+        getGeoApi(searchItem);
       });
       searchHistoryEle.append(button);
     });
@@ -136,4 +149,7 @@ function populateSearchHistory() {
 // console.log(searchHistory);
 
 // Listeners
-searchForm.addEventListener("submit", searchInput);
+searchForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  searchInput();
+});
