@@ -9,6 +9,7 @@ var searchButton = document.getElementById("search-button");
 var oldSearch = JSON.parse(localStorage.getItem("prevSearch")) || [];
 var searchHistoryEle = document.getElementById("search-history");
 var futureForecast = document.getElementById("future-forecast");
+const apiKey = "0657e2947af83aaf43aadc579a1a3f99"
 
 //Function to capitalise first letter of search input
 function capitalizeFirstLetter(string) {
@@ -24,6 +25,7 @@ function searchInput() {
     return;
   }
 
+  getGeoApi(userSearch)
   // This reads, modifies, and puts it back in
   const array = JSON.parse(localStorage.getItem("weatherSearchHistory"));
   if (array) {
@@ -39,14 +41,17 @@ function searchInput() {
 // the geocache api link -- http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 
 // I'm not sure if I have to make another html + javascript file to display this?
-var getGeoApi = function (geo) {
-  var apiUrl = "https://api.openweathermap.org/geo" + geo + "/direct";
+
+
+var getGeoApi = function (cityName) {
+  var apiUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`;
 
   fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
-          displayGeoApi(data, geo);
+         console.log(data)
+         console.log(data[0].lat, data[0].lon)
         });
       } else {
         alert("Error: " + response.statusText);
