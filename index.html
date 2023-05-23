@@ -10,17 +10,21 @@
   </head>
   <body>
     <header id="header">
-      <h1>Weather Dashboard</h1>
+      <h1><i>Weather Dashboard</i></h1>
     </header>
     <hr />
     <main>
       <div class="left-column">
         <form id="search-form">
           <div id="input-container">
-            <h2>Search For a City</h2>
+            <h2 id="search-header-text">Search For a City</h2>
             <div style="display: flex">
-              <input type="text" id="input-field" placeholder="placeholder" />
-              <button type="submit" id="search-button">Go</button>
+              <input
+                type="text"
+                id="input-field"
+                placeholder="City name goes here!"
+              />
+              <button type="submit" id="search-button">Search</button>
             </div>
           </div>
         </form>
@@ -28,23 +32,20 @@
       </div>
       <div id="weather-section">
         <div id="current-weather">
-          <h1>Current Weather</h1>
+          <h3>Current Weather</h1>
           <div id="weather-data"></div>
-
         </div>
         <div id="forecast">
-
-          <h1>Forecast</h1>
+          <h3>Forecast</h1>
           <div id="forecast-cards"></div>
         </div>
       </div>
     </main>
+    <footer>
+      <h4>
+        &copy; <a href="https://github.com/jrtvick">Tyler Vick</a>, 2023
+      </h4>
+    </footer>
   </body>
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script
-    src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-    crossorigin="anonymous"
-  ></script>
   <script src="./js/script.js"></script>
 </html>

@@ -1,79 +1,122 @@
 /* Giving my entire webpage some structure and the ability to flex into columns*/
-/* body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    background-position: fixed;
-} */
 body {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
-
-    flex-grow: 1;
-    display: flex;
-
+  flex-grow: 1;
+  display: flex;
 }
+
 /* Giving the different elements a little style to stand out from each other*/
 #header {
-    height: auto;
-    width: auto;
-    padding: 30px;
-    color:cornsilk;
-    background-color: darkblue;
+  height: auto;
+  width: auto;
+  padding: 30px;
+  color: cornsilk;
+  background-image: url(/images/weather-header.png);
+  background-position: end;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+h1 {
+  font-size: xx-large;
 }
 
 .left-column {
-    color:cornsilk;
-    background-color:maroon;
-    padding-top: 2px;
-    width: 25%;
+  color: cornsilk;
+  background-color: rgb(103, 103, 253);
+  padding-top: 2px;
+  width: 25%;
 }
 
-/* h2 {
-    padding-left: 30px;
-} */
+#search-header-text {
+  font-size: 25px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
 
 #input-container {
-    width: min-content;
-    margin: auto;
+  width: min-content;
+  margin: auto;
+  padding-bottom: 15px;
 }
 
-#search-history{
-    display: flex;
-    flex-direction: column;
+#search-history {
+  display: flex;
+  flex-direction: column;
 }
 
+#search-history button {
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
 
+#search-history button:hover {
+  background-color: rgb(54, 80, 54);
+  color: white;
+}
 
-#weather-section{
-    width: 75%;
-    display: flex;
-    flex-direction: column;
+#weather-section {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
 }
 
 #current-weather {
-    background-color: bisque;
-    flex-grow: 1;
+  background-color: bisque;
+  flex-grow: 1;
+  padding-top: 20px;
+  padding-left: 20px;
 }
 
 #forecast {
-    background-color: darkgray;
-    flex-grow:1;
+  background-color: darkgray;
+  flex-grow: 1;
+  padding-top: 20px;
+  padding-left: 20px;
 }
-#forecast-cards{
-    display: flex;
-    flex-wrap: wrap;
+#forecast-cards {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .card {
-    background-color: darkgray;
-    border: 2px solid rgba(0,0,0,0.5);
-    border-radius: 8px;
+  background-color: darkgray;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  margin: 5px;
+  padding: 5px;
+  height: min-content;
+}
 
-    margin: 5px;
-    padding: 5px;
-    height: min-content;
+.card:hover {
+  box-shadow: 0px 0px 100px 0px rgb(228, 255, 105);
+  transition: color 0.7s ease-in-out;
+  box-shadow: 0.7s ease-in-out;
+  cursor: crosshair;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  background: transparent;
+  padding: 8px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  cursor: crosshair;
+  color: coral;
+}
+
+a:visited {
+  text-decoration: none;
 }
