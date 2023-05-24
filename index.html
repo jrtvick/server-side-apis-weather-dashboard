@@ -4,16 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/reset.css" />
-    <link rel="stylesheet" href="./css/style.css" />
+        <!--Linked my reset and style sheets.-->
+    <link rel="stylesheet" href="./assets/css/reset.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <title>WeatherDashboard</title>
   </head>
   <body>
+        <!--Simple header for style-->
     <header id="header">
       <h1><i>Weather Dashboard</i></h1>
     </header>
     <hr />
+     <!--The main tags will house all the functioning aspects of the webpage. Search field, history, and weather results.-->
     <main>
+      <!--left column specific to search field and past searches.-->
       <div class="left-column">
         <form id="search-form">
           <div id="input-container">
@@ -30,6 +34,7 @@
         </form>
         <div id="search-history"></div>
       </div>
+      <!--weather section will be used to display all results, both current day and five day forecast.-->
       <div id="weather-section">
         <div id="current-weather">
           <h3>Current Weather</h1>
@@ -41,11 +46,13 @@
         </div>
       </div>
     </main>
+    <!--small footer for structure and style.-->
     <footer>
       <h4>
         &copy; <a href="https://github.com/jrtvick">Tyler Vick</a>, 2023
       </h4>
     </footer>
   </body>
-  <script src="./js/script.js"></script>
+  <!--linked my script down here.-->
+  <script src="./assets/js/script.js"></script>
 </html>

@@ -9,17 +9,16 @@ main {
   display: flex;
 }
 
-/* Giving the different elements a little style to stand out from each other*/
+/* Giving header a background image and some basic styling.*/
 #header {
   height: auto;
   width: auto;
   padding: 30px;
-  color: cornsilk;
-  background-image: url(/images/weather-header.png);
-  background-position: end;
+  color: yellow;
+  background-image: url(../images/weather-header.png);
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
 h1 {
@@ -27,6 +26,7 @@ h1 {
   padding-left: 250px;
 }
 
+/* Styling the left side of the main to represent a search area. Style included for input, button, search results, etc. */
 .left-column {
   color: cornsilk;
   background-color: rgb(103, 103, 253);
@@ -61,6 +61,8 @@ h1 {
   color: white;
 }
 
+/* Lines 66-121 represent the bulk of styling done to display the weather in a visually appealing way.
+Styled the current weather as well as five day forecast to have borders and hover pseudo classes. */
 #weather-section {
   width: 75%;
   display: flex;
@@ -81,6 +83,13 @@ h1 {
     padding: 5px;
     height: min-content;
     width: fit-content;
+}
+
+#weather-data:hover {
+  box-shadow: 0px 0px 100px 0px rgb(228, 255, 105);
+  transition: color 2s;
+  box-shadow: 2s;
+  cursor: crosshair;
 }
 
 #forecast {
@@ -111,10 +120,10 @@ h1 {
   cursor: crosshair;
 }
 
+/* Tiny bit of style for the footer. */
 footer {
   display: flex;
   justify-content: center;
-  /* background: linear-gradient(linear-gradient(50deg, rgb(103, 148, 247) 50%, rgb(242, 252, 105) 90%)); */
   padding: 8px;
 }
 

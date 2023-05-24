@@ -10,7 +10,7 @@ N/A
 
 ## Usage
 
-To be added: screenshot of deployed webpage
+![Screenshot of Tyler's weather dashboard displaying the current weather and 5 day forecast for Atlanta.](./assets/images/weather-deashboard-screenshot.png)
 
 
 The URL of the deployed application: https://jrtvick.github.io/server-side-apis-weather-dashboard/
@@ -23,8 +23,6 @@ The URL of the GitHub repository: https://github.com/jrtvick/server-side-apis-we
 Tutorial Links:
 
 https://eloquentjavascript.net/Eloquent_JavaScript_small.pdf
-
-https://code.mu/en/javascript/book/prime/timers/launch-button/
 
 https://www.w3schools.com/js/js_loop_for.asp
 

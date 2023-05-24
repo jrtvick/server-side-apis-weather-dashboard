@@ -1,4 +1,4 @@
-// establish global variables
+// Establish global variables.
 var inputField = document.getElementById("input-field");
 var searchButton = document.getElementById("search-button");
 var searchForm = document.getElementById("search-form");
@@ -8,7 +8,7 @@ var forecastCards = document.getElementById("forecast-cards");
 var weatherDataEl = document.getElementById("weather-data");
 const apiKey = "0657e2947af83aaf43aadc579a1a3f99";
 
-// get user's location
+// Get user's location.
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(function (position) {
     let latitude = position.coords.latitude;
@@ -18,7 +18,7 @@ if (navigator.geolocation) {
   });
 }
 
-//Function to capitalise first letter of search input
+// Function to capitalise first letter of search input.
 function capitalizeFirstLetter(string) {
   let stringArray = string.split(" ");
   stringArray = stringArray.map((word) => {
@@ -27,7 +27,7 @@ function capitalizeFirstLetter(string) {
   return stringArray.join(" ");
 }
 
-// get the value of the search input.
+// Get the value of the search input.
 function searchInput() {
   var userSearch = inputField.value;
   inputField.value = "";
@@ -39,7 +39,7 @@ function searchInput() {
   getGeoApi(userSearch);
 }
 
-
+// Getting the latitude and longitude of user search input.
 var getGeoApi = function (cityName) {
   var apiUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}`;
 
@@ -62,6 +62,7 @@ var getGeoApi = function (cityName) {
     });
 };
 
+// Getting the current weather for the city searched.
 var getCurrentWeather = function (lat, lon, cityName) {
   var apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   fetch(apiUrl)
@@ -96,6 +97,7 @@ var getCurrentWeather = function (lat, lon, cityName) {
     });
 };
 
+// Getting the five day forecast for the user search input.
 var getFutureWeather = function (lat, lon) {
   var apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   fetch(apiUrl)
@@ -129,6 +131,7 @@ var getFutureWeather = function (lat, lon) {
     });
 };
 
+// Rendering the current weather to display the appropriate information based on fetched data from the API.
 function renderCurrentWeather(data) {
   weatherDataEl.innerHTML = "";
   weatherDataEl.innerHTML = `
@@ -141,7 +144,7 @@ function renderCurrentWeather(data) {
   `;
 }
 
-// add the searched city to the search history using localstorage
+// Added the searched city to the search history using localstorage.
 populateSearchHistory();
 function populateSearchHistory() {
   if (localStorage.getItem("weatherSearchHistory")) {
@@ -159,7 +162,7 @@ function populateSearchHistory() {
   }
 }
 
-// Listeners
+// Listeners listed here.
 searchForm.addEventListener("submit", (event) => {
   event.preventDefault();
   searchInput();
